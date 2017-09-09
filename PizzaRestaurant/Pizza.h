@@ -8,23 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
-enum PizzaSize{
-    pizzaSizeSmall,
-    pizzaSizeMedium,
-    pizzaSizeLarge,
+typedef NS_ENUM(NSUInteger, PizzaSize) {
+    PizzaSizeSmall,
+    PizzaSizeMedium,
+    PizzaSizeLarge
 };
+// equivalent to
+//typedef NSUInteger PizzaSize;
+//#define PizzaSizeSmall 0
+//#define PizzaSizeMedium 1
+//#define PizzaSizeLarge 2
+
+//enum PizzaSize {
+//    Small, Medium, Large
+//};
 
 @interface Pizza : NSObject
 
+//@property (nonatomic,assign,readonly) enum PizzaSize size;
+@property (nonatomic,assign,readonly) PizzaSize size;
 
-+ (enum PizzaSize)parseSize:(NSString *)sizeOfPizza;
+@property (nonatomic,strong,readonly) NSArray<NSString*>* toppings;
 
-
-@property (readonly) enum PizzaSize size;
-@property (readonly) NSArray* toppings;
-
-- (instancetype)initWithSize:(enum PizzaSize)pizzaSize andToppings:(NSArray*)pizzaToppings;
-
-
+- (instancetype)initWithSize:(PizzaSize)size toppings:(NSArray<NSString*>*)toppings;
 
 @end

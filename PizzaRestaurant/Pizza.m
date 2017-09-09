@@ -10,30 +10,21 @@
 
 @implementation Pizza
 
-
-+ (enum PizzaSize)parseSize:(NSString *)sizeOfPizza {
-    if ([sizeOfPizza isEqualToString:@"small"]) {
-        return pizzaSizeSmall;
-    } else if ([sizeOfPizza isEqualToString:@"medium"]) {
-        return pizzaSizeMedium;
-    } else if ([sizeOfPizza isEqualToString:@"large"]) {
-        return pizzaSizeLarge;
-    } else {
-        return 0;
-    }
-}
-
-
-- (instancetype)initWithSize:(enum PizzaSize)pizzaSize andToppings:(NSArray*)pizzaToppings {
+- (instancetype)initWithSize:(PizzaSize)size toppings:(NSArray<NSString*>*)toppings
+{
     self = [super init];
     if (self) {
-        _size = pizzaSize;
-        _toppings = pizzaToppings;
-        }    
+        _size = size;
+        _toppings = toppings;
+    }
     return self;
 }
 
-
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"Pizza with %@",
+            [self.toppings componentsJoinedByString:@", "]];
+}
 
 @end
 
